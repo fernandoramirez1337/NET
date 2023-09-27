@@ -137,6 +137,8 @@ void MyServer::receive_data(void * void_sockFD){
             perror("recv");
             exit(1);
         }
+        buffer[numbytes] = 0;
+
         char message_type = buffer[0]; buffer[0] = '0'; buffer[numbytes] = 0;
         int message_size = atoi(buffer);
         if ((numbytes = recv(_sockFD, buffer, message_size, 0)) == -1){
@@ -178,11 +180,15 @@ void MyServer::receive_data(void * void_sockFD){
                 perror("recv");
                 exit(1);
             }
+            buffer[numbytes] = 0;
+
             int buffer_size = atoi(buffer);
             if ((numbytes = recv(_sockFD, buffer, buffer_size, 0)) == -1){
                 perror("recv");
                 exit(1);
             }
+            buffer[numbytes] = 0;
+
             formatted_buffer = buffer;
             int delimiter = formatted_buffer.find(dots);
             sender = formatted_buffer.substr(0, delimiter);
@@ -194,6 +200,7 @@ void MyServer::receive_data(void * void_sockFD){
         } else if ( message_type == 'Q') { //exit
 
         }
+        formatted_buffer.clear();
     }
 
 }
