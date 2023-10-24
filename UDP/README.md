@@ -7,6 +7,7 @@ how to compile (linux)
     cd build
     cmake -G "Unix Makefiles" ../
     cmake --build . --config Release --target client
+    ./client port username
     
 how to compile (windows)
 
