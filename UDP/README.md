@@ -4,6 +4,7 @@ UDP PROGRAMMING
 
 how to compile (linux)
 
+    mkdir build
     cd build
     cmake -G "Unix Makefiles" ../
     cmake --build . --config Release --target client
