@@ -13,3 +13,10 @@ how to compile (windows)
 
     www.google.com
 
+how to use
+
+    to send a message
+    <port> <message>
+
+    messages are received in this format
+    (<username>@<ip>:<port>): <message>
