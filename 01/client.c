@@ -28,11 +28,11 @@ void read_send(int _sockFD, char * user);
 void start_listening(int _sockFD) {
 
     pthread_t id ;
-    pthread_create(&id,NULL,receive_data,(void *)_sockFD);
+    pthread_create(&id,NULL,receive_data,(void *)(intptr_t)_sockFD);
 }
 
 void * receive_data(void * void_sockFD) {
-    int _sockFD = (int)void_sockFD;
+    int _sockFD = (int)(intptr_t)void_sockFD;
     char buf[MAXDATASIZE];
 
     while (1)

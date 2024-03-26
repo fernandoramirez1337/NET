@@ -53,7 +53,7 @@ struct acceptedSocket *accept_connection(int _sockFD) {
 }
 
 void *receive_data(void *void_sockFD) {
-    int _sockFD = (int)void_sockFD;
+    int _sockFD = (int)(intptr_t)void_sockFD;
     char buf[MAXDATASIZE];
 
     while (1) {
@@ -87,7 +87,7 @@ void start_accepting_connections(int _sockFD) {
 
 void receive_sock(struct acceptedSocket *p_socket) {
     pthread_t id;
-    pthread_create(&id, NULL, receive_data, (void *)p_socket->sockFD);
+    pthread_create(&id, NULL, receive_data, (void *)(intptr_t)p_socket->sockFD);
 }
 
 void send_other_clients(char *buf, int _sockFD) {
