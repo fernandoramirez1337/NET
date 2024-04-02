@@ -1,0 +1,314 @@
+11 200 OK
+Date: Tue, 02 Apr 2024 14:37:36 GMT
+Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips PHP/7.4.33 mod_perl/2.0.11 Perl/v5.16.3
+X-Powered-By: PHP/7.4.33
+Set-Cookie: DevMode=0
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=UTF-8
+
+
+<!DOCTYPE HTML>
+<html>
+
+  
+
+  <head>
+    <title>Interactive Problems, Computer Networking: A Top Down Approach</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/lux/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="custom.css" rel="stylesheet" type="text/css"/>
+  </head>
+
+  <body>
+    <!-- Required scripts for bootstrap to function -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="questions.js"></script>
+    <!-- This is the navbar -->
+    <div id='navbar' class="container fixed-top">
+	<nav class="navbar navbar-expand-lg mx-auto mt-2 navbar-light py-2 bg-danger">
+		<button class="navbar-toggler mb-1" type="button" data-toggle="collapse" data-target="#navbar-toggle" aria-label="toggle">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbar-toggle">
+			<ul class="navbar-nav w-100">
+				<li class="nav-item">
+					<a href="../index.php" class="btn btn-outline-primary mt-1 mb-1 ml-2">Home</a>
+				</li>
+				<li class="nav-item">
+					<a href="../about.php" class="btn btn-outline-primary mt-1 mb-1 ml-2">About</a>
+				</li>
+				<li class="nav-item dropdown active">
+					<a href="#" id='navbarDropdown1' role='button' class="nav-link btn btn-outline-primary dropdown-toggle mt-1 mb-1 ml-2" data-toggle='dropdown'>
+						Resources (for everyone)
+					</a>
+					<div class='dropdown-menu' aria-labelledby='navbarDropdown1'>
+						<a class='dropdown-item' href='../lectures.php'>Online Lectures</a>
+						<a class='dropdown-item' href='../ppt.php'>Powerpoint</a>
+						<a class='dropdown-item' href='../wireshark.php'>Wireshark Labs</a>
+						<a class='dropdown-item' href='../knowledgechecks/'>Knowledge Checks</a>
+						<a class='dropdown-item' href='index.php'>Interactive End-of-Chapter Problems</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a href="../instructor.php" class="btn btn-outline-primary mt-1 mb-1 ml-2">Instructor Resources</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="#" id='navbarDropdown2' role='button' class="nav-link btn btn-outline-primary dropdown-toggle mt-1 mb-1 ml-2" data-toggle='dropdown'>
+						More
+					</a>
+					<div class='dropdown-menu' aria-labelledby='navbarDropdown2'>
+						<a class='dropdown-item' href='../authors.php'>Authors</a>
+						<a class='dropdown-item' href='../contact.php'>Contact</a>
+						<a class='dropdown-item' href='../publisher.php'>Publisher's Page</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<img src='../header_graphic_book_8E_3.jpg' class='img-fluid'/>
+</div>
+<div class='d-none d-lg-block'>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+</div>
+<div class='d-block d-lg-none'>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+</div>    <!--This container holds the basic information that's on every problem -->
+    <div class="container">
+      <h1 class="text-dark-red">Interactive end-of-chapter exercises</h1>
+      <hr>
+      <!-- <div class="row"> -->
+        <!--Classes define how to render the paragraphs and image based on window size -->
+        <!-- <div class="col-lg-9 col-md-7 col-sm-6 col-6 mt-5"> -->
+                    <!-- <p class="larger-fontsize">Supplement to <a href="https://www.pearson.com/us/higher-education/program/Kurose-Computer-Networking-RENTAL-EDITION-8th-Edition/PGM2877610.html">Computer Networking: A Top Down Approach 8th Edition</a></p>
+          <br/>
+          <p class="large-fontsize"><em>&quot;Tell me and I forget. Show me and I remember. Involve me and I understand.&quot; Chinese proverb</em></p>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 col-6">
+          <img src="8E_cover_small.jpg" class="img-fluid mt-5 mt-sm-2 mt-md-1" alt="Textbook Cover">
+        </div>
+      </div> -->
+    </div>
+    <!-- <br/> -->
+    <!-- All content / each problem goes in here -->
+    <div class="container jumbotron" id="maincontainer">
+
+<script>
+$(document).ready(function() {
+    var vals = location.search.replace('?', '').split('=');
+    if(vals.length > 1) {
+      var vals = vals[1];
+      vals = decodeURIComponent(atob(vals))
+      var questions = vals.split(',');
+
+      for(var question of questions) { // for each question
+        if($('#' + question).length) { // exists
+          if($('#' + question).is("ul")) { // highlight entire chapter
+            $('#' + question).children().addClass('highlight');
+            question = question.replace('c', 'h');
+            $('#' + question).addClass('highlight');
+          }
+          else {
+            $('#' + question).addClass('highlight');
+          }
+        }
+      }
+
+      if(questions.length > 0) {
+        var q = questions[0];
+        if($('#' + q).length) {
+          document.getElementById(q).scrollIntoView({block: 'center'});
+        }
+      }
+    }
+    return;
+});
+
+$(document).on('click', '#create-highlights', function() {
+  /*
+    When clicked, checkbox inputs will be added to each problem and
+    chapter heading, and the 'generate' button will be unhidden
+  */
+  $('#gen-highlights').removeClass('d-none');
+  $(this).addClass('d-none');
+
+  var children = $('#problems').children();
+  for(var i = 0; i < children.length; i++) {
+    var child = children[i];
+    if(child.tagName == 'H5') {
+      $('<input class=\'form-check-input\' type=\'checkbox\' value=\'\' id=\'checkbox-' + $(child).attr('id') + '\'>').insertBefore(child);
+    }
+    else if(child.tagName == 'UL') {
+      var ul_children = $(child).children();
+      for(var j = 0; j < ul_children.length; j++) {
+        var ul_child = ul_children[j];
+        $(ul_child).prepend('<input class=\'form-check-input\' type=\'checkbox\' value=\'\' id=\'checkbox-' + $(ul_child).attr('id') + '\'>');
+      }
+    }
+  }
+});
+
+$(document).on('click', "input", function() {
+    /*
+      When one of the Chapter checkboxes is clicked, it will select all problems and
+      disable changes to checkboxes in said chapter
+    */
+    if($(this).attr('id').startsWith('checkbox-h')) {
+      var subproblems = $('#c'+$(this).attr('id').slice(-1)).children();
+      for(var i = 0; i < subproblems.length; i++) {
+        var subproblem = $(subproblems[i]).find("input");
+        if($(this).is(':checked')) {
+          $(subproblem).prop('indeterminate', true);
+          $(subproblem).prop('checked', false);
+          $(subproblem).prop('disabled', true);
+        }
+        else {
+          $(subproblem).prop('indeterminate', false);
+          $(subproblem).prop('checked', false);
+          $(subproblem).prop('disabled', false);
+        }
+      }
+    }
+});
+
+$(document).on('click', '#gen-highlights', function() {
+  /*
+    When clicked, highlight string will be generated, this button will be
+    hidden, and checkbox inputs will be removed from the page
+  */
+
+  var output = "";
+
+  $("input:checked").each(function() {
+    var stripped = $(this).attr('id').replace('checkbox-', '');
+    if($('#'+stripped).is("h5")) {
+      stripped = stripped.replace('h', 'c');
+    }
+    output += stripped + ",";
+  });
+
+  output = output.slice(0, -1);
+  output = encodeURIComponent(btoa(output).replaceAll('=', ''));
+
+  // jump to page
+  window.location.href = "index.php?p="+output;
+
+});
+</script>
+
+
+<p>The links below will take you to end-of-chapter exercises where you'll be presented with an exercise whose solution can then be displayed (hopefully <em>after</em> you've solved the exercise yourself!). Each of the exercises below is similar to an end-of-chapter problem in the text. Most importantly, you can keep generating new instances of each exercise (and hopefully solving each one!) until you've mastered the material.
+<br/><br/>You may be interested in other supplemental material (online lectures, powerpoint slides, review questions, Wireshark labs) for our book, available <a href="../index.php"> here.</a><br/><br/>This page replaces the earlier interactive problems page, and includes a number of new problems.  We're actively adding new problems here. If you've got any comments or suggestions - let us know at  <a href="mailto:kurose@cs.umass.edu"> kurose@cs.umass.edu </a>
+</p>
+<hr>
+<br/>
+<div id='problems'>
+  <h5 id='h1'>Chapter 1: Introduction</h5>
+  <ul id='c1'>
+    <li id='circuit_switching'><a href="circuit_switching.php">Circuit Switching</a></li>
+    <li id='ps_versus_cs'><a href="ps_versus_cs.php">Quantitative Comparison of Packet Switching and Circuit Switching</a><a> (similar to Chapter 1, P8, P9) </a> </li>
+    <li id='caravan'><a href="caravan.php">Car - Caravan Analogy</a></li>
+    <li id='one-hop-delay'><a href="one-hop-delay.php">One-hop Transmission Delay</a> (similar to example on pg. 37)</li>
+    <li id='qdelay'><a href="qdelay.php">Queuing Delay</a></li>
+    <li id='end-end-delay'><a href="end-end-delay.php">End-to-End Delay</a> (similar to Chapter 1, P10)</li>
+    <li id='end-end-throughput-simple'><a href="end-end-throughput-simple.php">End-to-End Throughput</a> (similar to Chapter 1, P20, and Figure 1.20)</li>
+    <li id='layers'><a href="layers.php">The IP Stack and Protocol Layering</a></li>
+  </ul>
+  <br/>
+  <h5 id='h2'>Chapter 2: Application Layer</h5>
+  <ul id='c2'>
+    <li id='dns'><a href="dns.php">DNS - Basics</a></li>
+    <li id='dns_query'><a href="dns_query.php">DNS - Iterative vs Recursive Query</a></li>
+    <li id='DNS_HTTP_delay'><a href="DNS_HTTP_delay.php">DNS and HTTP delays</a> (similar to Chapter 2, P7,P8)</li>
+    <li id='http-get'><a href="http-get.php">HTTP GET</a> (similar to Chapter 2, P4)</li>
+    <li id='http-response'><a href="http-response.php">HTTP RESPONSE</a> (similar to Chapter 2, P5)</li>
+    <li id='browser_caching'><a href="browser_caching.php">Browser Caching</a></li>
+    <li id='smtp'><a href="smtp.php">Electronic Mail and SMTP</a></li>
+    <li id='CS_vs_P2P_download'><a href="CS_vs_P2P_download.php">A comparison of client-server and P2P file distribution delays</a> (similar to Chapter 2, P22)</li>
+  </ul>
+  <br/>
+  <h5 id='h3'>Chapter 3: Transport Layer</h5>
+  <ul id='c3'>
+    <li id='internet_checksum'><a href="internet_checksum.php">Internet checksum</a> (similar to Chapter 3, P3 and P4)</li>
+    <li id='rdt22'><a href="rdt22.php">Reliable data transfer: rdt22</a></li>
+    <li id='rdt30'><a href="rdt30.php">Reliable data transfer: rdt30</a></li>
+    <li id='tcp_segloss'><a href="tcp_segloss.php">TCP sequence and ACK numbers, with segment loss</a> (similar to Chapter 3, P27)</li>
+    <li id='TCP_RTT'><a href="TCP_RTT.php">TCP RTT and timeout</a> (similar to Chapter 3, P31)</li>
+    <li id='tcp_evolution'><a href="tcp_evolution.php">TCP congestion window evolution</a> (similar to Chapter 3, P40)</li>
+    <li id='tcp_retrans'><a href="tcp_retrans.php">TCP retransmissions (reliable data transmission with ACK loss)</a></li>
+    <li id='UDP_Mux_Demux'><a href="UDP_Mux_Demux.php">UDP Mux and Demux</a></li>
+    <li id='TCP_Mux_Demux'><a href="TCP_Mux_Demux.php">TCP Mux and Demux</a></li>
+  </ul>
+  <br/>
+  <h5 id='h4'>Chapter 4: Network Layer: Data Plane</h5>
+  <ul id='c4'>
+    <li id='longestprefix'><a href="longestprefix.php">Longest Prefix Matching</a> (similar to Chapter 4, P8)</li>
+    <li id='scheduling'><a href="scheduling.php">Packet Scheduling</a> (similar to Chapter 4, P6-7)</li>
+    <li id='subnet_addressing'><a href="subnet_addressing.php">Subnet Addressing</a> (similar to Chapter 4, P15)</li>
+    <li id='nat'><a href="nat.php">Network Address Translation</a> (similar to Chapter 4, P18)</li>
+    <li id='ip_tunneling'><a href="ip_tunneling.php">IPv6 Tunneling and Encapsulation</a></li>
+    <li id='openflow'><a href="openflow.php">Openflow Flow Tables</a> (similar to Chapter 4, P20-22)</li>
+  </ul>
+  <br/>
+  <h5 id='h5'>Chapter 5: Network Layer: Control Plane</h5>
+  <ul id='c5'>
+    <li id='dij'><a href="dij.php">Dijkstra's Link State Algorithm</a> (similar to Chapter 5, P3-5)</li>
+    <li id='dij_advanced'><a href="dij_advanced.php">Dijkstra's Link State Algorithm - Advanced</a></li>
+    <li id='disVector'><a href="disVector.php">Bellman Ford Distance Vector algorithm</a> (similar to Chapter 5, P8)</li>
+
+  </ul>
+  <br/>
+  <h5 id='h6'>Chapter 6: Link Layer</h5>
+  <ul id='c6'>
+    <li id='2d_parity'><a href="2d_parity.php">Error Detection and Correction: Two Dimensional Parity</a> (similar to Chapter 6, P1-P2)</li>
+    <li id='CRC'><a href="CRC.php">Error Detection and Correction: Cyclic Redundancy Check</a> (similar to Chapter 6, P5-P6)</li>
+    <li id='aloha'><a href="aloha.php">Random Access Protocols: Aloha</a> (similar to Chapter 6, P8-P9)</li>
+    <li id='collisions'><a href="collisions.php">Random Access Protocols: Collisions</a></li>
+    <li id='link_layer_addressing'><a href="link_layer_addressing.php">Link Layer (and network layer) addressing, forwarding</a> (similar to Chapter 6,  P15)</li>
+    <li id='learning_switch_basic'><a href="learning_switch_basic.php">Learning Switches - Basic</a></li>
+    <li id='learning_switch'><a href="learning_switch.php">Learning Switches - Advanced</a></li>
+  </ul>
+  <br/>
+  <h5 id='h7'>Chapter 7: Wireless and Mobile Networks</h5>
+  <ul id='c7'>
+    <li id='cdma'><a href="cdma.php">CDMA - Basic</a></li>
+    <li id='cdma_advanced'><a href="cdma_advanced.php">CDMA - Advanced</a></li>
+    <li id='4g_tunneling'><a href="4g_tunneling.php">4G Wireless Tunneling</a></li>
+    <li id='4g_handover'><a href="4g_handover.php">4G Wireless Handover</a></li>
+  </ul>
+</div>
+<br/>
+<a href="user_mode.php"><img src="devmode-icon.png" alt="Developer Mode Toggle" style="width:25px;height:25px;"></a>
+
+
+    <!-- End of the main container that holds the problem -->
+    </div>
+    <!-- This container holds the copyright and contact info -->
+    <div class="container">
+      <p>We gratefully acknowledge the programming and problem design work of John Broderick (UMass '21), which has really helped to substantially improve this site.</p>
+      <p> Copyright © 2010-2022 J.F. Kurose, K.W. Ross<br/>Comments welcome and appreciated: kurose@cs.umass.edu<br></p>
+    </div>
+  </body>
+</html>
