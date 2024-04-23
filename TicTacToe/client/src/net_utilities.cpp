@@ -28,7 +28,6 @@ std::vector<std::vector<unsigned char>> net::readAndDivideFile(const std::string
 
     std::vector<unsigned char> fileData(fileSize);
     file.read(reinterpret_cast<char*>(fileData.data()), fileSize);
-
     std::vector<std::vector<unsigned char>> chunks;
 
     size_t offset = 0;
@@ -36,17 +35,14 @@ std::vector<std::vector<unsigned char>> net::readAndDivideFile(const std::string
         size_t remainingSize = fileSize - offset;
         size_t chunkSizeBytes = std::min(remainingSize, chunkSize);
         
-        std::vector<unsigned char> chunk(fileData.begin() + offset, 
-                                          fileData.begin() + offset + chunkSizeBytes);
+        std::vector<unsigned char> chunk(fileData.begin() + offset, fileData.begin() + offset + chunkSizeBytes);
         chunks.push_back(std::move(chunk));
 
         offset += chunkSizeBytes;
     }
-
     return chunks;
 }
-
-// E
+// E##
 std::string net::PROTOCOL::ErrorMessage(int err_n) {
     if (err_n < 0 || err_n > 99) {
         return "E00";
@@ -91,7 +87,7 @@ std::string net::PROTOCOL::PrivateMessage(std::string msg, std::string receiver)
     oss << "M" << net::format_size(receiver.size(), 2) << receiver << net::format_size(msg.size(), 2) << msg;
     return oss.str();
 }
-// F##FILENAME##########
+// F##FILENAME####RECEIVERFILE
 std::vector<std::string> net::PROTOCOL::FileMessages(std::string file_name, std::string receiver) {
     std::vector<std::string> messages;
     const int chunkSize = 1024;
@@ -111,4 +107,11 @@ std::vector<std::string> net::PROTOCOL::FileMessages(std::string file_name, std:
     }
     return messages;
 }
-
+//G##
+std::string net::PROTOCOL::TicTacToeMessage(std::string msg){
+    std::ostringstream oss;
+    if (msg.size() == 2) {
+        oss << "G" << msg;
+    } else { oss << ""; }
+    return oss.str();
+}

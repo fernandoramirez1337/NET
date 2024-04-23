@@ -8,8 +8,7 @@ std::string net::format_size(const int size, int n) {
     oss << std::setw(n) << std::setfill('0') << size;
     return oss.str();
 }
-
-// E
+// E##
 std::string net::PROTOCOL::ErrorMessage(int err_n) {
     if (err_n < 0 || err_n > 99) {
         return "E00";
@@ -66,6 +65,7 @@ std::string net::PROTOCOL::PrivateMessage(std::string msg, std::string sender){
     oss << "m" << net::format_size(sender.size(), 2) << sender << net::format_size(msg.size(), 2) << msg;
     return oss.str();
 }
+// f##FILENAME## ##SENDER FILE
 std::string net::PROTOCOL::FileMessage(std::string file_name, ssize_t file_size, std::string sender, std::string data){
     std::ostringstream oss;
     oss << "f" << net::format_size(file_name.size(), 2) << file_name << net::format_size(file_size, 15) << net::format_size(sender.size(), 2) << sender << data;

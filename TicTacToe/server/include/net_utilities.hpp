@@ -6,9 +6,7 @@
 #include <iomanip>
 #include <map>
 
-
 namespace net {
-
     std::string format_size(const int, int);
     class PROTOCOL {
         public:

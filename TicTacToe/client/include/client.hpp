@@ -5,6 +5,9 @@
 
 #include <string>
 #include <vector>
+#include <map>
+#include <functional>
+#include <unordered_map>
 
 class CLIENT {
 public:
@@ -33,12 +36,20 @@ private:
         FILE_TRANSFER = 'f'
     };
 
-    void handleLoginLogout(char);
-    void handleListUsers();
-    void handleMessage(char);
-    void handleErrorMessage();
-    void handleFileMessage();
-    void handleTTTMessage();
+    using command_action = std::function<std::string(const std::string&)>;
+    std::map<std::string, command_action> command_actions;
+    int send_message(const std::string&);
+
+    using handler_function = std::function<void(char)>;
+    std::unordered_map<char, handler_function> handle_map;
+    void init_handle_map();
+    void add_handler(const char, const handler_function);
+
+    void handle_login_logout(char);
+    void handle_list_users();
+    void handle_message(char);
+    void handle_error_message();
+    void handle_file_message();
 
     std::string recv_string(int, int);
     void *get_in_addr(struct sockaddr *);
