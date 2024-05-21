@@ -1,3 +1,0 @@
-/home/traintagger/Code/cplusplus/NET/repository/UDP/01/client/build/CMakeFiles/client.dir
-/home/traintagger/Code/cplusplus/NET/repository/UDP/01/client/build/CMakeFiles/edit_cache.dir
-/home/traintagger/Code/cplusplus/NET/repository/UDP/01/client/build/CMakeFiles/rebuild_cache.dir

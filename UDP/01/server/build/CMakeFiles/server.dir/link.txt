@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/server.dir/src/server.cxx.o CMakeFiles/server.dir/src/server_toolkit.cxx.o CMakeFiles/server.dir/main.cxx.o -o server 
