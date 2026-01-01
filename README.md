@@ -1,100 +1,179 @@
 # NET
 
-Los modelos estructurales pueden ser
+A collection of network programming examples and projects demonstrating socket programming concepts in C, C++, and Python.
 
-  estáticos y dinámicos
+## Table of Contents
 
-Los atributos de una clase que se pueden heredar son
+- [Overview](#overview)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Building and Running](#building-and-running)
+  - [TCP Examples](#tcp-examples)
+  - [UDP Examples](#udp-examples)
+  - [NCURSES Examples](#ncurses-examples)
+  - [CONTROL_LAB](#control_lab)
 
-  los públicos y protegidos
+## Overview
 
-Un modelo estructural
+This repository contains various network programming examples covering:
 
- muestra la organización y la arquitectura del sistema
+- **TCP Socket Programming**: Client-server implementations including a multi-client chat application and a networked TicTacToe game
+- **UDP Socket Programming**: Datagram-based communication examples
+- **NCURSES Integration**: Terminal UI applications with network capabilities
+- **HTTP Basics**: Simple HTTP request/response handling
 
-Un modelo gráfico para que se usaría
+## Project Structure
 
-  para facilitar la discusión sobre un sistema existente,
-  para generar código en la implementación de un sistema, 
-  para documentar un sistema existente,
-  para facilitar la discusión sobre un sistema nuevo
-  
-Los eventos pueden tener datos asociados, aunque no siempre es así
+```
+NET/
+├── TCP/
+│   ├── 01/          # Basic TCP chat (C)
+│   ├── 02/          # Basic TCP chat (C++)
+│   ├── 03/          # TCP with HTTP examples
+│   ├── 04/          # TCP client/server (CMake)
+│   ├── 05/          # TCP client/server (CMake)
+│   └── TicTacToe/   # Networked TicTacToe game
+├── UDP/
+│   └── 01/          # UDP client/server
+├── NCURSES/
+│   ├── 01/          # NCURSES client/server
+│   ├── 01.1/        # NCURSES variant
+│   └── 02/          # NCURSES client/server
+└── CONTROL_LAB/     # Control lab client
+```
 
-  verdadero
+## Prerequisites
 
-Los diagramas de actividades se pueden usar para modelar el
-procesamiento de datos, donde cada actividad representa un
-paso del proceso
+- **Compiler**: GCC or G++ with C11/C++17 support
+- **Build Tools**: CMake (for projects in TCP/04, TCP/05, TCP/TicTacToe, UDP, NCURSES)
+- **Libraries**:
+  - POSIX threads (`pthread`)
+  - NCURSES (for NCURSES examples)
+- **Python 3** (for HTTP scripts in TCP/03)
 
-  verdadero
+### Installing Dependencies
 
-Se puede usar para levantar los requerimientos de un sistema
+**Debian/Ubuntu:**
+```bash
+sudo apt-get update
+sudo apt-get install build-essential cmake libncurses5-dev
+```
 
-  diagrama de casos de uso
+**Fedora:**
+```bash
+sudo dnf install gcc g++ cmake ncurses-devel
+```
 
-Se puede usar para definir los modelos de procesos de un negocio
+## Building and Running
 
-  diagrama de actividades
+### TCP Examples
 
-Cuando se está discutiendo y diseñando la arquitectura del
-sistema, se suele crear un
+#### TCP/01 - Basic Chat (C)
+```bash
+cd TCP/01
+gcc server.c -lpthread -o server.exe
+gcc client.c -lpthread -o client.exe
 
-  modelo estructural
+# Run server
+./server.exe <port>
 
-Son modelos que permiten modelar el comportamiento
-dinámico de un sistema en ejecución
+# Run client (in another terminal)
+./client.exe <hostname> <port> <username>
+```
 
-  modelos de comportamiento
+#### TCP/02 - Basic Chat (C++)
+```bash
+cd TCP/02
+g++ server.cpp -lpthread -o server.exe
+g++ client.cpp -lpthread -o client.exe
 
-Una máquina de estados es un modelo que podría pertenecer a
+# Run server
+./server.exe <port>
 
-  la perspectiva de comportamiento
+# Run client (in another terminal)
+./client.exe <hostname> <port> <username>
+```
 
-Los modelos de contexto pertenecen a la
+#### TCP/03 - TCP with HTTP
+```bash
+cd TCP/03
+g++ server.cpp -lpthread -o server.exe
+g++ client.cpp -lpthread -o client.exe
+```
 
-  perspectiva externa
+#### TCP/04, TCP/05, TCP/TicTacToe - CMake Projects
 
-Para poder generar código de manera correcta es necesario
-que el PIM tenga todos los detalles relativos a la plataforma en
-la que se generará el código.
+For each of these projects (04, 05, or TicTacToe), build both client and server:
 
-  falso
+```bash
+# Build server
+cd TCP/04/server  # or TCP/05/server, TCP/TicTacToe/server
+mkdir build && cd build
+cmake .. && make
 
-Los diagramas de estado se utilizan para modelar el
-comportamiento de un sistema en respuesta a eventos
-internos o externos.
+# Build client
+cd ../../client
+mkdir build && cd build
+cmake .. && make
+```
 
-  verdadero
+### UDP Examples
 
-Se dice que un modelo es una abstracción de un sistema porque
+#### UDP/01
+```bash
+cd UDP/01/server
+mkdir build && cd build
+cmake .. && make
 
-  ignora los detalles del sistema
+cd ../../client
+mkdir build && cd build
+cmake .. && make
 
-En un diagrama de secuencia, la siguiente anotación indica
+# Run using the test script
+cd ../..
+./run_test.sh
+```
 
-  actividades mutuamente excluyentes
+### NCURSES Examples
 
-La generalización es una técnica que se usa para administrar
+#### NCURSES/01, 01.1, 02
+```bash
+cd NCURSES/<version>/server  # or /client
+mkdir build && cd build
+cmake .. && make
+```
 
-  la complejidad
+### CONTROL_LAB
 
-El modelamiento de sistemas
+```bash
+cd CONTROL_LAB
+g++ main.cpp -lpthread -o client.exe
 
-  es un proceso de desarrollo de modelos abstractos de un sistema,
-  ayuda al analista a entender la funcionalidad del sistema,
-  es realizar un modelo significativo en algún tipo de notación gráfica
+# Run
+./client.exe
+```
 
-Los modelos de comportamiento se utilizan para describir el
-comportamiento dinámico de un sistema en ejecución. Este
-comportamiento se puede modelar desde
+## Usage Examples
 
-  la perspectiva de los datos procesados por el sistema,
-  los eventos que estimulan las respuestas de un sistema
+### Running a TCP Chat Server and Client
 
-La ingeniería dirigida por modelos es un enfoque para el
-desarrollo de software en el que un sistema se representa
-como un conjunto de modelos que se pueden transformar
-manualmente en código ejecutable.
+1. Start the server:
+```bash
+./server.exe 8080
+# Output: server: waiting for connections...      PORT = 8080
+```
 
-  falso
+2. Connect with clients:
+```bash
+./client.exe localhost 8080 Alice
+./client.exe localhost 8080 Bob
+```
+
+3. Type messages in client terminals to chat. Type `end` to disconnect.
+
+### TicTacToe Game
+
+The TicTacToe project implements a networked two-player game. Build both client and server components, then:
+
+1. Start the server on a chosen port
+2. Connect two clients to play against each other
